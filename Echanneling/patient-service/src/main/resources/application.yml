@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/EmpService?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/PatientService?createDatabaseIfNotExist=true
     username: root
-    password: 1234
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   jpa:
     hibernate:

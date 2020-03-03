@@ -15,7 +15,6 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     PatientRepository patientRepository;
 
-
     @Override
     public Patient save(Patient patient){
         return patientRepository.save(patient);
