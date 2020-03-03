@@ -40,11 +40,14 @@ public class Employee {
         inverseJoinColumns=@JoinColumn(name="pid",referencedColumnName="id"))
     List<Project> projects;
 
+
+
 /******************************************************************************/
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
     public String getName() { return name; }
+
     public void setName(String name) { this.name = name; }
 
     public int getMarks() { return marks; }

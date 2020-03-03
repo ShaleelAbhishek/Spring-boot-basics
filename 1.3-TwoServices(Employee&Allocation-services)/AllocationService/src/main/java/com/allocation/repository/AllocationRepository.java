@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface AllocationRepository extends JpaRepository<Allocation,Integer> {
-    List<Allocation> findByEmployeeId(Integer empId);
+
+//    List<Allocation> findByEmpId(Integer empId);
 }
 

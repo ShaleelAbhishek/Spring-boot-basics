@@ -22,3 +22,7 @@ Response
   "startDate": "2020.02.29",
   "endDate": "2021.02.29"
 }
+
+
+Then to connect this Allocation service with Employee service,
+

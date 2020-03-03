@@ -5,7 +5,7 @@ public class Allocation {
 
     private  Integer id;
     private Integer empId;
-    private String name;
+    private String alloName;
     private String startDate;
     private String endDate;
 
@@ -35,12 +35,12 @@ public class Allocation {
         this.empId = empId;
     }
 
-    public String getName() {
-        return name;
+    public String getAlloName() {
+        return alloName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAlloName(String name) {
+        this.alloName = name;
     }
 
     public String getStartDate() {

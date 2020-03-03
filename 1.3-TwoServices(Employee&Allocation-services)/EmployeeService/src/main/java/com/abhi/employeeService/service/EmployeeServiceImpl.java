@@ -6,6 +6,10 @@ import com.abhi.employeeService.model.Employee;
 import com.abhi.employeeService.model.Telephone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,6 +23,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     EmployeeRepository employeeRepository;
+
+    @Autowired
+    RestTemplate restTemplate;
+
+    @Bean
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
 
     //this for loop helps to get telephone numbers one by one which an employee has.
     // this should be used because employee and telephone is a OneToMany relationship
@@ -37,12 +49,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
+
+
     public Employee findById(Integer empId){
         Optional<Employee> employees = employeeRepository.findById(empId);
         if (employees.isPresent())
             return employees.get();
         return null;
     }
+
+
     @Value("${service.host}")
     private String allocationServiceHost;
 
@@ -51,9 +67,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Value("${service.allocation.findByEmployeeId}")
     private String findByEmployeeIdURI;
-
-
-
 
 
     @Override
@@ -75,5 +88,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return allocations;
     }
+
 
 }

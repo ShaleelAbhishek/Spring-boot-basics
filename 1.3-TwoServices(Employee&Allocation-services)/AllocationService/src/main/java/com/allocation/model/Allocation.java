@@ -12,14 +12,14 @@ public class Allocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer id;
     private Integer empId;
-    private String name;
+    private String alloName;
     private String startDate;
     private String endDate;
 
     public Allocation(Integer id, Integer empId, String name, String startDate, String endDate) {
         this.id = id;
         this.empId = empId;
-        this.name = name;
+        this.alloName = name;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -45,12 +45,12 @@ public class Allocation {
         this.empId = empId;
     }
 
-    public String getName() {
-        return name;
+    public String getAlloName() {
+        return alloName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAlloName(String alloName) {
+        this.alloName = alloName;
     }
 
     public String getStartDate() {
