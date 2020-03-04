@@ -5,7 +5,7 @@ import com.allocation.model.Allocation;
 import java.util.List;
 
 public interface AllocationService {
-    Allocation save(Allocation allocation);
+    Allocation postAllocation(Allocation allocation);
     List<Allocation> getAllocations();
     List<Allocation> getAllocationByEmployeeId(Integer id);
 }

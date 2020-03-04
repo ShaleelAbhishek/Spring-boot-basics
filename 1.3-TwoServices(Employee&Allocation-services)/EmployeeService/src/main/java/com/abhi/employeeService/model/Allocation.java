@@ -3,7 +3,7 @@ package com.abhi.employeeService.model;
 public class Allocation {
 
 
-    private  Integer id;
+    private Integer id;
     private Integer empId;
     private String alloName;
     private String startDate;

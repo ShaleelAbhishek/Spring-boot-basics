@@ -23,7 +23,7 @@ public class EmployeeController {
         //if you want to update a employee record, give PUT.
         //if you want to get the employee record, give GET.
         //@RequestMapping(value = "/employee",method = RequestMethod.POST) you can use this instead of @PostMapping
-        @PostMapping("/employee")
+        @PostMapping("/employeeP")
         //here with @RequestBody anything comes in the request body, take as Employee object
         public Employee save(@RequestBody Employee employee){
             return employeeService.save(employee);
@@ -31,14 +31,14 @@ public class EmployeeController {
 
         //this request is used to get all employee details that are in db
         //localhost:port/employeeList
-        @GetMapping("/employeeList")
+        @GetMapping("/employeeG")
         public List<Employee> getEmployees() {
             return employeeService.getAllEmployees();
         }
 
         @RequestMapping("/employee/allocation")
-        public List<Allocation> getAllAllocation(){
-            return employeeService.fetchEmployeeAllocation();
+        public Employee getAllAllocation(@PathVariable Integer id){
+            return employeeService.fetchEmployeeAllocation(id);
         }
 
 }

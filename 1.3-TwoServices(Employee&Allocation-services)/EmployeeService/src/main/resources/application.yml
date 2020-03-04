@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/AbhiE?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/EmpService?createDatabaseIfNotExist=true
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -12,8 +12,4 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: create
-service:
-  host: http://localhost:8182
-  allocation:
-    findAll: /allocationG
-    findByEmployeeId: /alloEmp/findByEmployeeId
+      show-sql: true

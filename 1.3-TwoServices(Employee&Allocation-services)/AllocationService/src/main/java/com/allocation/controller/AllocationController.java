@@ -15,8 +15,8 @@ public class AllocationController {
     AllocationService allocationService;
 
     @PostMapping("/allocationP")
-    public Allocation save(@RequestBody Allocation allocation){
-        return allocationService.save(allocation);
+    public Allocation postAllocations(@RequestBody Allocation allocation){
+        return allocationService.postAllocation(allocation);
     }
 
     @GetMapping("/allocationG")
@@ -24,7 +24,7 @@ public class AllocationController {
         return allocationService.getAllocations();
     }
 
-    @GetMapping("/alloEmp/findByEmployeeId/{id}")
+    @GetMapping("/allocationEmp/findByEmployeeId/{id}")
     public List<Allocation> getAllocationByEmployeeId(@PathVariable Integer id){
         return allocationService.getAllocationByEmployeeId(id);
     }

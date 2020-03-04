@@ -5,7 +5,6 @@ import com.abhi.employeeService.model.Allocation;
 import com.abhi.employeeService.model.Employee;
 import com.abhi.employeeService.model.Telephone;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,45 +47,69 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
+//    public Employee findById(Integer empId){
+//        Optional<Employee> employees = employeeRepository.findById(empId);
+//        if (employees.isPresent())
+//            return employees.get();
+//        return null;
+//    }
 
 
-    public Employee findById(Integer empId){
-        Optional<Employee> employees = employeeRepository.findById(empId);
-        if (employees.isPresent())
-            return employees.get();
-        return null;
+    public Optional<Employee> findById(Integer id){
+        return employeeRepository.findById(id);
     }
 
 
-    @Value("${service.host}")
-    private String allocationServiceHost;
-
-    @Value("${service.allocation.findAll}")
-    private String findAll;
-
-    @Value("${service.allocation.findByEmployeeId}")
-    private String findByEmployeeIdURI;
-
+//    @Value("${service.host}")
+//    private String allocationServiceHost;
+//
+//    @Value("${service.allocation.findAll}")
+//    private String findAll;
+//
+//    @Value("${service.allocation.findByEmployeeId}")
+//    private String findByEmployeeIdURI;
+//
+//
+//    @Override
+//    public List<Allocation> fetchEmployeeAllocation() {
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//
+//        ResponseEntity<Allocation[]> result = restTemplate.getForEntity(allocationServiceHost + findAll, Allocation[].class);
+//
+//        Allocation[] resultBody = result.getBody();
+//
+//        List<Allocation> allocations = new ArrayList<>();
+//
+//        for (Allocation allocation : resultBody) {
+//            allocation.setEmployee(this.findById(allocation.getEmpId()));
+//            allocations.add(allocation);
+//        }
+//
+//
+//        return allocations;
+//    }
 
     @Override
-    public List<Allocation> fetchEmployeeAllocation() {
+    public Employee fetchEmployeeAllocation(Integer empId) {
+        Optional<Employee> employeeOptional = employeeRepository.findById(empId);
 
-        RestTemplate restTemplate = new RestTemplate();
+        if (employeeOptional.isPresent()) {
+            Employee employee = employeeOptional.get();
 
-        ResponseEntity<Allocation[]> result = restTemplate.getForEntity(allocationServiceHost + findAll, Allocation[].class);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            HttpEntity<String> httpEntity = new HttpEntity<String>("", httpHeaders);
 
-        Allocation[] resultBody = result.getBody();
+            ResponseEntity<Allocation[]> responseEntity = restTemplate.exchange(
+                    "http://localhost:8182/allocation/findByEmployeeId" + empId, HttpMethod.GET, httpEntity,
+                    Allocation[].class);
 
-        List<Allocation> allocations = new ArrayList<>();
+            employee.setAllocation(responseEntity.getBody());
 
-        for (Allocation allocation : resultBody) {
-            allocation.setEmployee(this.findById(allocation.getEmpId()));
-            allocations.add(allocation);
+            return  employee;
         }
 
-
-        return allocations;
+        return null;
     }
-
 
 }
