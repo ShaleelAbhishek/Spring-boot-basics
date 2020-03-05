@@ -30,12 +30,14 @@ public class AllocationServiceImpl implements AllocationService {
 
     //you can use above commented (line 27-29) code with an abstract method in AllocationRepository
     //or else below code
-    public List<Allocation> getAllocationByEmployeeId(Integer empId){
+    public List<Allocation> getAllocationByEmployeeId(Integer id){
 
-        Allocation allocation = new Allocation();
-        allocation.setEmpId(empId);
-        Example<Allocation> employeeExample = Example.of(allocation);
-        return allocationRepository.findAll(employeeExample);
+//        Allocation allocation = new Allocation();
+//        allocation.setEmpId(empId);
+//        Example<Allocation> employeeExample = Example.of(allocation);
+//        return allocationRepository.findAll(employeeExample);
 
+        //newly added, set with allorepository
+        return allocationRepository.findByEmpId(id);
     }
 }

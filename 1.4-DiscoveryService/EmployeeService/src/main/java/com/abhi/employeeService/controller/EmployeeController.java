@@ -25,7 +25,7 @@ public class EmployeeController {
         //@RequestMapping(value = "/employee",method = RequestMethod.POST) you can use this instead of @PostMapping
         @PostMapping("/employeeP")
         //here with @RequestBody anything comes in the request body, take as Employee object
-        public Employee save(@RequestBody Employee employee){
+        public String save(@RequestBody Employee employee){
             return employeeService.save(employee);
         }
 
@@ -36,13 +36,5 @@ public class EmployeeController {
             return employeeService.getAllEmployees();
         }
 
-//        @RequestMapping("/employee/allocation")
-//        public Employee getAllAllocation(@PathVariable int id){
-//            return employeeService.fetchEmployeeAllocation(id);
-//        }
 
-    @RequestMapping("/employee/allocation")
-    public List<Allocation> getEmployeesAllocation() {
-        return employeeService.fetchEmployeeAllocation();
-    }
 }

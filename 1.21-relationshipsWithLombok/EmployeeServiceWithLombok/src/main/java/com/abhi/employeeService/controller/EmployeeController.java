@@ -1,6 +1,5 @@
 package com.abhi.employeeService.controller;
 
-import com.abhi.employeeService.model.Allocation;
 import com.abhi.employeeService.model.Employee;
 import com.abhi.employeeService.service.EmployeeService;
 import com.abhi.employeeService.service.EmployeeServiceImpl;
@@ -23,26 +22,16 @@ public class EmployeeController {
         //if you want to update a employee record, give PUT.
         //if you want to get the employee record, give GET.
         //@RequestMapping(value = "/employee",method = RequestMethod.POST) you can use this instead of @PostMapping
-        @PostMapping("/employeeP")
+        @PostMapping("/employee")
         //here with @RequestBody anything comes in the request body, take as Employee object
         public Employee save(@RequestBody Employee employee){
             return employeeService.save(employee);
         }
 
         //this request is used to get all employee details that are in db
-        //localhost:port/employeeList
-        @GetMapping("/employeeG")
+        @GetMapping("/employeeList")
         public List<Employee> getEmployees() {
             return employeeService.getAllEmployees();
         }
 
-//        @RequestMapping("/employee/allocation")
-//        public Employee getAllAllocation(@PathVariable int id){
-//            return employeeService.fetchEmployeeAllocation(id);
-//        }
-
-    @RequestMapping("/employee/allocation")
-    public List<Allocation> getEmployeesAllocation() {
-        return employeeService.fetchEmployeeAllocation();
-    }
 }
