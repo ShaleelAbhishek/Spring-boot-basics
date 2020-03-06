@@ -19,9 +19,15 @@ public class AllocationController {
         return allocationService.postAllocation(allocation);
     }
 
-    @GetMapping("/allocationG")
+    @GetMapping("/allocation")
     public List<Allocation> getAllocations(){
         return allocationService.getAllocations();
+    }
+
+    @GetMapping("/allocationG/{id}")
+    public List<Allocation> getAllocationById(@PathVariable("id") Integer empId){
+        System.out.println("kkkkkkkkkkkkkkkkkkkkk"+empId);
+        return allocationService.getAllocationById(empId);
     }
 
 }

@@ -9,5 +9,6 @@ import java.util.List;
 public interface EmployeeService {
     String save(Employee employee);
     List<Employee> getAllEmployees();
-
+    Employee getEmployeeById(Integer id);
+    List<Allocation> fetchAllocation(Integer empId);
 }

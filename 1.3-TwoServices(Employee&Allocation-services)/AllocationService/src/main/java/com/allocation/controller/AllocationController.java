@@ -15,18 +15,19 @@ public class AllocationController {
     AllocationService allocationService;
 
     @PostMapping("/allocationP")
-    public Allocation postAllocations(@RequestBody Allocation allocation){
+    public String postAllocations(@RequestBody Allocation allocation){
         return allocationService.postAllocation(allocation);
     }
 
-    @GetMapping("/allocationG")
+    @GetMapping("/allocation")
     public List<Allocation> getAllocations(){
         return allocationService.getAllocations();
     }
 
-    @GetMapping("/allocationEmp/findByEmployeeId/{id}")
-    public List<Allocation> getAllocationByEmployeeId(@PathVariable Integer id){
-        return allocationService.getAllocationByEmployeeId(id);
+    @GetMapping("/allocationG/{id}")
+    public List<Allocation> getAllocationById(@PathVariable("id") Integer empId){
+        System.out.println("kkkkkkkkkkkkkkkkkkkkk"+empId);
+        return allocationService.getAllocationById(empId);
     }
 
 }

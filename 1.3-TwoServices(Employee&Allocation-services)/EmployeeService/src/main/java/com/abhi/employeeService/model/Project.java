@@ -1,9 +1,12 @@
 package com.abhi.employeeService.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+
 public class Project {
 
     @Id
@@ -24,6 +27,7 @@ public class Project {
 
     /**********************************************************************/
 
+    //this getters and setters are not need to mention
 //    public List<Employee> getEmployees() { return employees; }
 //    public void setEmployees(List<Employee> employees) { this.employees = employees; }
 

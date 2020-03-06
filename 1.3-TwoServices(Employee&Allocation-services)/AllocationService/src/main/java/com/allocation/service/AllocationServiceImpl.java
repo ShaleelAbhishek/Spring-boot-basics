@@ -15,8 +15,9 @@ public class AllocationServiceImpl implements AllocationService {
     AllocationRepository allocationRepository;
 
     @Override
-    public Allocation postAllocation(Allocation allocation){
-        return allocationRepository.save(allocation);
+    public String postAllocation(Allocation allocation){
+         allocationRepository.save(allocation);
+         return "Data Saved";
     }
 
     @Override
@@ -24,20 +25,8 @@ public class AllocationServiceImpl implements AllocationService {
         return allocationRepository.findAll();
     }
 
-//    public List<Allocation> getAllocationByEmployeeId(Integer id){
-//        return allocationRepository.findByEmpId(id);
-//    }
-
-    //you can use above commented (line 27-29) code with an abstract method in AllocationRepository
-    //or else below code
-    public List<Allocation> getAllocationByEmployeeId(Integer id){
-
-//        Allocation allocation = new Allocation();
-//        allocation.setEmpId(empId);
-//        Example<Allocation> employeeExample = Example.of(allocation);
-//        return allocationRepository.findAll(employeeExample);
-
-        //newly added, set with allorepository
-        return allocationRepository.findByEmpId(id);
+    @Override
+    public List<Allocation> getAllocationById(Integer id) {
+        return allocationRepository.findAllByEmpId(id);
     }
 }

@@ -48,4 +48,34 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAll();
     }
 
+    //here you use Optional because findById is , "Optional<T> findById(ID id);"
+    //you can get employee data by id here
+//    @Override
+//    public Optional<Employee> getEmployeeById(Integer id) {
+//        return employeeRepository.findById(id);
+//    }
+    //u can use below code instead of above code , line 48-50
+    public Employee getEmployeeById(Integer id) {
+        Optional<Employee> employees = employeeRepository.findById(id);
+        if (employees.isPresent())
+             return employees.get();
+        return null;
+    }
+
+    public List<Allocation> fetchAllocation(Integer empId) {
+        HttpHeaders httpHeaders=new HttpHeaders();
+        HttpEntity<String> httpEntity=new HttpEntity<>("",httpHeaders);
+
+        ResponseEntity<Allocation[]> result=restTemplate.exchange("http://localhost:8182/allocationG/"+empId,
+                HttpMethod.GET,httpEntity,Allocation[].class);
+
+        Allocation[] resultBody = result.getBody();
+        List<Allocation> allocations = new ArrayList<>();
+
+        for (Allocation allocation : resultBody) {
+            allocation.setEmployee(this.getEmployeeById(allocation.getEmpId()));
+            allocations.add(allocation);
+        }
+        return allocations;
+    }
 }

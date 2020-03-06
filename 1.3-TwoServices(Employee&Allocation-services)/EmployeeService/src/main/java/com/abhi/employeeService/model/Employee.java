@@ -41,7 +41,6 @@ public class Employee {
     List<Project> projects;
 
 
-    Allocation[] allocation;
 
     /******************************************************************************/
     public Integer getId() { return id; }
@@ -64,11 +63,5 @@ public class Employee {
     public List<Project> getProjects() { return projects; }
     public void setProjects(List<Project> projects) { this.projects = projects; }
 
-    public Allocation[] getAllocation() {
-        return allocation;
-    }
 
-    public void setAllocation(Allocation[] allocation) {
-        this.allocation = allocation;
-    }
 }

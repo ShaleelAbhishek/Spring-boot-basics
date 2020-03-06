@@ -25,6 +25,8 @@ public class Telephone {
 
     /******************************************************************************/
 
+    //this geeters and setters are need to be added, in serviceImpl  these two functions are called in
+    //for loop
     public Employee getEmployee() { return employee; }
     public void setEmployee(Employee employee) { this.employee = employee; }
 }

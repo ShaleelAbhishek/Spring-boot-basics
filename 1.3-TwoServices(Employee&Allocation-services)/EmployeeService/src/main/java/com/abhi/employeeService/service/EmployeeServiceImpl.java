@@ -34,11 +34,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     //this for loop helps to get telephone numbers one by one which an employee has.
     // this should be used because employee and telephone is a OneToMany relationship
     //so the telephone table will keep employee id for all telephone numbers a specific employee has
-    public Employee save(Employee employee){
+    public String save(Employee employee){
         for (Telephone telephone: employee.getTelephones()){
             telephone.setEmployee(employee);
         }
-        return employeeRepository.save(employee);
+        employeeRepository.save(employee);
+        return "data saved";
     }
 
     //this is used to return findAll method in JpaRepository to show all data it has saved in db
@@ -47,90 +48,34 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findAll();
     }
 
-
-    public Employee findById(Integer empId){
-        Optional<Employee> employees = employeeRepository.findById(empId);
+    //here you use Optional because findById is , "Optional<T> findById(ID id);"
+    //you can get employee data by id here
+//    @Override
+//    public Optional<Employee> getEmployeeById(Integer id) {
+//        return employeeRepository.findById(id);
+//    }
+    //u can use below code instead of above code , line 48-50
+    public Employee getEmployeeById(Integer id) {
+        Optional<Employee> employees = employeeRepository.findById(id);
         if (employees.isPresent())
-            return employees.get();
+             return employees.get();
         return null;
     }
 
+    public List<Allocation> fetchAllocation(Integer empId) {
+        HttpHeaders httpHeaders=new HttpHeaders();
+        HttpEntity<String> httpEntity=new HttpEntity<>("",httpHeaders);
 
-//    public Optional<Employee> findById(Integer empId){
-//        return employeeRepository.findById(empId);
-//    }
-
-
-//    @Value("${service.host}")
-//    private String allocationServiceHost;
-//
-//    @Value("${service.allocation.findAll}")
-//    private String findAll;
-//
-//    @Value("${service.allocation.findByEmployeeId}")
-//    private String findByEmployeeIdURI;
-//
-//
-//    @Override
-//    public List<Allocation> fetchEmployeeAllocation() {
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//
-//        ResponseEntity<Allocation[]> result = restTemplate.getForEntity(allocationServiceHost + findAll, Allocation[].class);
-//
-//        Allocation[] resultBody = result.getBody();
-//
-//        List<Allocation> allocations = new ArrayList<>();
-//
-//        for (Allocation allocation : resultBody) {
-//            allocation.setEmployee(this.findById(allocation.getEmpId()));
-//            allocations.add(allocation);
-//        }
-//
-//
-//        return allocations;
-//    }
-
-//    @Override
-//    public List<Allocation> fetchEmployeeAllocation()(Integer id) {
-//        Optional<Employee> employeeOptional = employeeRepository.findById(id);
-//
-//        if (employeeOptional.isPresent()) {
-//            Employee employee = employeeOptional.get();
-//
-//            HttpHeaders httpHeaders = new HttpHeaders();
-//            HttpEntity<String> httpEntity = new HttpEntity<String>("", httpHeaders);
-//
-//            ResponseEntity<Allocation[]> responseEntity = restTemplate.exchange(
-//                    "http://localhost:8182/allocation/findByEmployeeId" + id, HttpMethod.GET, httpEntity,
-//                    Allocation[].class);
-//
-//            employee.setAllocation(responseEntity.getBody());
-//
-//            return  employee;
-//        }
-//
-//        return null;
-//    }
-
-    @Override
-    public List<Allocation> fetchEmployeeAllocation() {
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<Allocation[]> result = restTemplate.getForEntity("http://localhost:8181" + "/allocation/findByEmployeeId", Allocation[].class);
+        ResponseEntity<Allocation[]> result=restTemplate.exchange("http://localhost:8182/allocationG/"+empId,
+                HttpMethod.GET,httpEntity,Allocation[].class);
 
         Allocation[] resultBody = result.getBody();
-
         List<Allocation> allocations = new ArrayList<>();
 
         for (Allocation allocation : resultBody) {
-            allocation.setEmployee(this.findById(allocation.getEmpId()));
+            allocation.setEmployee(this.getEmployeeById(allocation.getEmpId()));
             allocations.add(allocation);
         }
-
-
         return allocations;
     }
-
 }
