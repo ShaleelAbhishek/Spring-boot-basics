@@ -16,6 +16,11 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer patientId;
     private String patientName;
+    private String gender;
+    private String age;
+    private String user_name;
+    private String password;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     Address address;
@@ -23,6 +28,8 @@ public class Patient {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     List<Telephone> telephones;
 
+    public List<Telephone> getTelephones() { return telephones; }
+    public void setTelephones(List<Telephone> telephones) { this.telephones = telephones; }
 
 }
 
