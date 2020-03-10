@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: employeeservice
+server:
+  port: 0
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
