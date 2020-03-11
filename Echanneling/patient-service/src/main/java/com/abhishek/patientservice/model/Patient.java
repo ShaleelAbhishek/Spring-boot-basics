@@ -18,18 +18,18 @@ public class Patient {
     private String patientName;
     private String gender;
     private String age;
-    private String user_name;
-    private String password;
+//    private String user_name;
+//    private String password;
 
 
     @OneToOne(cascade = CascadeType.ALL)
     Address address;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
-    List<Telephone> telephones;
+    List<PatientTelephone> telephones;
 
-    public List<Telephone> getTelephones() { return telephones; }
-    public void setTelephones(List<Telephone> telephones) { this.telephones = telephones; }
+    public List<PatientTelephone> getTelephones() { return telephones; }
+    //public void setTelephones(List<PatientTelephone> telephones) { this.telephones = telephones; }
 
 }
 

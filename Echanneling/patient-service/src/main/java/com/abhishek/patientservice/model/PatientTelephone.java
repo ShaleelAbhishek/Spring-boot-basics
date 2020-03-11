@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Telephone {
+public class PatientTelephone {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,9 @@ public class Telephone {
     @JsonIgnore
     Patient patient;
 
-    public Patient getPatient() {
-        return patient;
-    }
+//    public Patient getPatient() {
+//        return patient;
+//    }
 
     public void setPatient(Patient patient) {
         this.patient = patient;
