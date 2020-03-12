@@ -2,6 +2,8 @@ package com.abhi.employeeService.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -41,5 +43,14 @@ public class Employee {
         this.marks = marks;
     }
 
+//    public static List<Employee> getAllEmployees(){
+//        List<Employee> employeeList = new ArrayList<>();
+//
+//        employeeList.add(new Employee(1,"abhi", 50));
+//        employeeList.add(new Employee(2,"kasun", 55));
+//
+//        return employeeList;
+//
+//    }
 
 }

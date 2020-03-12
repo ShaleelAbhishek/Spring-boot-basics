@@ -14,20 +14,13 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer doctorId;
     private String doctorName;
-//    private String specilizedArea;
+    private Integer categoryId;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     List<DoctorTelephone> telephones;
 
     public List<DoctorTelephone> getTelephones() { return telephones; }
     public void setTelephones(List<DoctorTelephone> telephones) { this.telephones = telephones; }
-
-    @ManyToOne
-    @JoinColumn
-    @JsonIgnore
-    SpecializedArea specializedArea;
-
-
 
 
 }
