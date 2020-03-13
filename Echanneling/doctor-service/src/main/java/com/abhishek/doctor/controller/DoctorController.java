@@ -15,19 +15,22 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
 
+    /****************Save Doctor*****************/
     @PostMapping("/save")
     public Doctor saveDoctor(@RequestBody Doctor doctor){
     return doctorService.save(doctor);
     }
 
-    @GetMapping("/get/{id}")
-    public Doctor getDoctorById(@PathVariable Integer id){
-    return doctorService.getDoctorById(id);
+    /*******return doctor by Specilty Id to Specialty service****/
+    @GetMapping("/getDoctors/{id}")
+    public List<Doctor> doctorsList(@PathVariable Integer id){
+        return doctorService.doctorsList(id);
     }
 
-    @GetMapping("/doctorSa/{id}")
-    public List<Specialty> getSpecialty(@PathVariable Integer id){
-        return doctorService.getSpecialty(id);
+    /**********get doctor with specialty by doctor Id**********/
+    @GetMapping("/doctor/{id}")
+    public Doctor getDoctor(@PathVariable Integer id){
+        return doctorService.getDoctor(id);
     }
 
 }

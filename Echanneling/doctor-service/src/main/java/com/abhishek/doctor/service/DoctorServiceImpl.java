@@ -31,6 +31,7 @@ public class DoctorServiceImpl implements DoctorService {
         return new RestTemplate();
     }
 
+    //Doctor Save
     @Override
     public Doctor save(Doctor doctor) {
         for (DoctorTelephone t: doctor.getTelephones()){   //these two methods ()get and set are solved by @Data annotation in Telephone class
@@ -39,30 +40,31 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.save(doctor);
     }
 
+    //return Doctor by Specialty Id to Specilty Service
+    @Override
+    public List<Doctor> doctorsList(Integer id) {
+        return doctorRepository.findByCategoryId(id);
 
+    }
+
+    //get Doctor By ID
     public Doctor getDoctorById(Integer id) {
-        Optional<Doctor> employees = doctorRepository.findById(id);
+        Optional<Doctor> employees = doctorRepository.findByDoctorId(id);
         if (employees.isPresent())
             return employees.get();
         return null;
     }
 
-
-
-    public List<Specialty> getSpecialty(Integer id) {
+    //get Doctor with Specialty by doctor ID
+    public Doctor getDoctor(Integer doctorId) {
         HttpHeaders httpHeaders=new HttpHeaders();
         HttpEntity<String> httpEntity=new HttpEntity<>("",httpHeaders);
 
-        ResponseEntity<Specialty[]> result=restTemplate.exchange("http://localhost:8083/specialty/get/"+id,
-                HttpMethod.GET,httpEntity, Specialty[].class);
+        Doctor doctor=this.getDoctorById(doctorId);
 
-        Specialty[] resultBody = result.getBody();
-        List<Specialty> specialties = new ArrayList<>();
-
-        for (Specialty specialty : resultBody) {
-            specialty.setDoctor(this.getDoctorById(specialty.getDoctorId()));
-            specialties.add(specialty);
-        }
-        return specialties;
+        ResponseEntity<Specialty> result=restTemplate.exchange("http://localhost:8083/specialty/doctors/"+doctor.getCategoryId(),
+                HttpMethod.GET,httpEntity, Specialty.class);
+        doctor.setSpecialty(result.getBody());
+        return doctor;
     }
 }

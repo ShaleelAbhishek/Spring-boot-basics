@@ -13,10 +13,9 @@ public class Specialty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private Integer categoryId;
     private String category;
-    private Integer doctorId;
+
 
 
 }

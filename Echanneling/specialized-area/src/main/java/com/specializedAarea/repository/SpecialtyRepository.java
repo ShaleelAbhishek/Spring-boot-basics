@@ -8,5 +8,8 @@ import java.util.List;
 public interface SpecialtyRepository extends JpaRepository<Specialty,Integer> {
 
 
-    List<Specialty> findByDoctorId(Integer id);
+    /*****return Specialty by doctor Id*****/
+    Specialty findByCategoryId(Integer id);
+
+
 }

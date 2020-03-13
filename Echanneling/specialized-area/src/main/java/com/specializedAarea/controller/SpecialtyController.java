@@ -15,18 +15,29 @@ public class SpecialtyController {
     @Autowired
     SpecialtyService specialtyService;
 
+    //Specialty Save
     @PostMapping("/save")
     public Specialty saveSpecialty(@RequestBody Specialty specialty){
         return specialtyService.saveSpecialty(specialty);
     }
 
-    @GetMapping("/get/{id}")
-    public List<Specialty> getSpecialty(@PathVariable("id") Integer id){
+    //return specialties
+    @GetMapping("/getSpecialties")
+    public List<Specialty> getSpecialties(){
+        return specialtyService.getSpecialtyList();
+    }
+
+    //return specialty by doctor id to doctor service
+    @GetMapping("/getSpecialtyById/{id}")
+    public Specialty getSpecialtyById(@PathVariable("id") Integer id){
         return specialtyService.getSpecialtyById(id);
     }
 
-    @GetMapping("/doctor/{id}")
+    //get doctors list by specialty Id
+    @GetMapping("/doctors/{id}")
         public List<Doctor> getDoctors(@PathVariable Integer id){
         return specialtyService.getDoctors(id);
     }
+
+
 }

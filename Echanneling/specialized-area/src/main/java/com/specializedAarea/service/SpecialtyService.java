@@ -6,8 +6,12 @@ import com.specializedAarea.model.Specialty;
 import java.util.List;
 
 public interface SpecialtyService {
+    //save specialty
     Specialty saveSpecialty(Specialty specialty);
-    List<Specialty> getSpecialtyById(Integer id);
-
+    //return specialties list
+    List<Specialty> getSpecialtyList();
+    //return doctors by specialty id
     List<Doctor> getDoctors(Integer id);
+    Specialty getSpecialtyById(Integer id);
+
 }

@@ -11,28 +11,28 @@ import javax.persistence.Id;
 public class Specialty {
 
 
-    private Integer id;
+    //private Integer id;
     private Integer categoryId;
     private String category;
-    private Integer doctorId;
+//    private Integer doctorId;
 
-    private Doctor doctor;
+//    private Doctor doctor;
+//
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public Integer getCategoryId() {
         return categoryId;
@@ -50,12 +50,12 @@ public class Specialty {
         this.category = category;
     }
 
-    public Integer getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(Integer doctorId) {
-        this.doctorId = doctorId;
-    }
+//    public Integer getDoctorId() {
+//        return doctorId;
+//    }
+//
+//    public void setDoctorId(Integer doctorId) {
+//        this.doctorId = doctorId;
+//    }
 }
 

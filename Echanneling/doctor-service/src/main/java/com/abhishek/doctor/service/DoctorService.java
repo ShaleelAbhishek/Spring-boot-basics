@@ -7,9 +7,13 @@ import java.util.List;
 
 
 public interface DoctorService {
+    //save doctor
     Doctor save(Doctor doctor);
-    Doctor getDoctorById(Integer id);
-    List<Specialty> getSpecialty(Integer id);
+    //return doctors list by sepecialty id
+    List<Doctor> doctorsList(Integer id);
+    //get single doctor by doctor id
+    Doctor getDoctor(Integer id);
+
 
 
 }
