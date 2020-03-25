@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToOne;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Data
@@ -32,5 +33,13 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
+    }
+
+    @Override
+    public Patient getPatientById(Integer patientId) {
+        Optional<Patient> employees = patientRepository.findByPatientId(patientId);
+        if (employees.isPresent())
+            return employees.get();
+        return null;
     }
 }

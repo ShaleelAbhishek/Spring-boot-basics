@@ -35,7 +35,7 @@ public class SpecialtyController {
 
     //get doctors list by specialty Id
     @GetMapping("/doctors/{id}")
-        public List<Doctor> getDoctors(@PathVariable Integer id){
+        public List<Doctor> getDoctorsByCategoryId(@PathVariable Integer id){
         return specialtyService.getDoctors(id);
     }
 

@@ -28,7 +28,7 @@ public class DoctorController {
     }
 
     /**********get doctor with specialty by doctor Id**********/
-    @GetMapping("/doctor/{id}")
+    @GetMapping("/getDoctor/{id}")
     public Doctor getDoctor(@PathVariable Integer id){
         return doctorService.getDoctor(id);
     }

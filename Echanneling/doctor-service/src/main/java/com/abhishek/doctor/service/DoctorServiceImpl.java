@@ -40,11 +40,10 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.save(doctor);
     }
 
-    //return Doctor by Specialty Id to Specilty Service
+    //return Doctor by Specialty Id to Specialty Service
     @Override
     public List<Doctor> doctorsList(Integer id) {
         return doctorRepository.findByCategoryId(id);
-
     }
 
     //get Doctor By ID
@@ -61,10 +60,11 @@ public class DoctorServiceImpl implements DoctorService {
         HttpEntity<String> httpEntity=new HttpEntity<>("",httpHeaders);
 
         Doctor doctor=this.getDoctorById(doctorId);
-
-        ResponseEntity<Specialty> result=restTemplate.exchange("http://localhost:8083/specialty/doctors/"+doctor.getCategoryId(),
+        ResponseEntity<Specialty> result=restTemplate.exchange("http://localhost:8083/specialty/getSpecialtyById/"+doctor.getCategoryId(),
                 HttpMethod.GET,httpEntity, Specialty.class);
+
         doctor.setSpecialty(result.getBody());
         return doctor;
+
     }
 }
