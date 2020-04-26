@@ -46,6 +46,12 @@ public class DoctorServiceImpl implements DoctorService {
         return doctorRepository.findByCategoryId(id);
     }
 
+//    @Override
+//    public List<Doctor> getDoctors() {
+//        return doctorRepository.findAll();
+//    }
+
+
     //get Doctor By ID
     public Doctor getDoctorById(Integer id) {
         Optional<Doctor> employees = doctorRepository.findByDoctorId(id);
@@ -67,4 +73,33 @@ public class DoctorServiceImpl implements DoctorService {
         return doctor;
 
     }
+
+    public List<Doctor> getDoctors() {
+        HttpHeaders httpHeaders=new HttpHeaders();
+        HttpEntity<String> httpEntity=new HttpEntity<>("",httpHeaders);
+
+        List<Doctor> doctorList = new ArrayList<Doctor>();
+        List<Doctor> doctorList1 = new ArrayList<>();
+        doctorList = doctorRepository.findAll();
+
+        for (int counter = 0; counter < doctorList.size(); counter++) {
+
+            int doctorId = doctorList.get(counter).getDoctorId();
+
+
+            Doctor doctor=this.getDoctorById(doctorId);
+            ResponseEntity<Specialty> result=restTemplate.exchange("http://localhost:8083/specialty/getSpecialtyById/"+doctorList.get(counter).getCategoryId(),
+                    HttpMethod.GET,httpEntity, Specialty.class);
+            doctor.setSpecialty(result.getBody());
+//            System.out.println(result.getBody());
+            doctorList1.add(doctor);
+
+        }
+
+
+//
+        return doctorList1;
+
+    }
+
 }

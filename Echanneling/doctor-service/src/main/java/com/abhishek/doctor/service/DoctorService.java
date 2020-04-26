@@ -13,7 +13,6 @@ public interface DoctorService {
     List<Doctor> doctorsList(Integer id);
     //get single doctor by doctor id
     Doctor getDoctor(Integer id);
-
-
+    List<Doctor> getDoctors();
 
 }

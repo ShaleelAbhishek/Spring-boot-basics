@@ -23,6 +23,22 @@ public class Doctor {
     public List<DoctorTelephone> getTelephones() { return telephones; }
     public void setTelephones(List<DoctorTelephone> telephones) { this.telephones = telephones; }
 
+    public Integer getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Integer doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+
     public Integer getCategoryId() {
         return categoryId;
     }

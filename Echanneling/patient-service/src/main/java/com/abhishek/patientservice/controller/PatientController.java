@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/patient")
 public class PatientController {

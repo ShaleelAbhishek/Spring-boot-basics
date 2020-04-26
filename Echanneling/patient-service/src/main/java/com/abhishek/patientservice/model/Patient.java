@@ -16,10 +16,11 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer patientId;
     private String patientName;
+    private  String patientEmail;
     private String gender;
     private String age;
-//    private String user_name;
-//    private String password;
+    private String userName;
+    private String password;
 
 
     @OneToOne(cascade = CascadeType.ALL)

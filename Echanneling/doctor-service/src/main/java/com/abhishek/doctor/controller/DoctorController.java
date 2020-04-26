@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
@@ -31,6 +31,12 @@ public class DoctorController {
     @GetMapping("/getDoctor/{id}")
     public Doctor getDoctor(@PathVariable Integer id){
         return doctorService.getDoctor(id);
+    }
+
+    /********get all doctors***********************************/
+    @GetMapping("/getDoctors")
+    public List<Doctor> getAllDoctors(){
+        return doctorService.getDoctors();
     }
 
 }
