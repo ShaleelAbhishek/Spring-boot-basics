@@ -16,7 +16,7 @@ public class PatientController {
     PatientService patientService;
 
 
-    @PostMapping("/savePatient")
+    @PostMapping("/save")
     public Patient savepatient(@RequestBody Patient patient){
         return patientService.save(patient);
     }
@@ -29,5 +29,11 @@ public class PatientController {
     @GetMapping("/getPatientById/{id}")
     public Patient getPatientById(@PathVariable Integer id){
         return patientService.getPatientById(id);
+    }
+
+    @PutMapping("/update")
+    public Patient update(@RequestBody Patient patient){
+        System.out.println("qwwweee"+patient);
+        return patientService.update(patient);
     }
 }

@@ -1,9 +1,12 @@
 package com.appointment.model;
 
 import lombok.Data;
+import sun.util.calendar.BaseCalendar;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.TimeZone;
 
 @Entity
 @Data
@@ -14,10 +17,20 @@ public class Appointment {
     private Integer appointmentId;
     private Integer patientId;
     private Integer doctorId;
-    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+    private Date createdAt = new Date(System.currentTimeMillis());
     private String appointmentDate;
     private String appointmentStartTime;
     private AppointmentStatus status = AppointmentStatus.Booked;
+    private  boolean isDelete = false;
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
     @Transient
     private Doctor doctor;
     @Transient

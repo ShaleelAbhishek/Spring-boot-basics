@@ -13,7 +13,15 @@ public class Doctor {
 //    private Specialty specialty;
 //    @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
 //    List<DoctorTelephone> telephones;
+private Specialty specialty;
 
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
+    }
 
     public Integer getDoctorId() {
         return doctorId;

@@ -42,4 +42,49 @@ public class PatientServiceImpl implements PatientService {
             return employees.get();
         return null;
     }
+
+//    @Override
+//    public Patient delete(Patient customerOwner) {
+//        if(customerOwner.getPatientId()!=0){
+//            for(PatientTelephone telephone:customerOwner.getTelephones())
+//                telephone.setPatient(customerOwner);
+//        }
+//        customerOwner.setDlt(true);
+//        return patientRepository.save(customerOwner);
+//    }
+
+    @Override
+    public Patient update(Patient customerOwner) {
+        System.out.println("paitent"+customerOwner);
+        if(customerOwner.getPatientId()!=0){
+            for(PatientTelephone telephone:customerOwner.getTelephones())
+                telephone.setPatient(customerOwner);
+        }
+        customerOwner.setDlt(false);
+        return patientRepository.save(customerOwner);
+    }
+
+
+
+
+    @Override
+    public Patient findByUserName(String userName) {
+        return patientRepository.findByUserName(userName);
+    }
+
+    @Override
+    public Patient findByEmail(String patientEmail) {
+        return patientRepository.findByPatientEmail(patientEmail);
+    }
+
+    @Override
+    public Patient findByIdCardNumber(String idCardNumber) {
+        return patientRepository.findByIdCardNumber(idCardNumber);
+    }
+
+    @Override
+    public boolean findByActivity(boolean activity) {
+        return patientRepository.findByActivity(activity==true);
+    }
+
 }

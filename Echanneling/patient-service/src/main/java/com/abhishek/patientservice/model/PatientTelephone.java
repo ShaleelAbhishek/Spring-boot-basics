@@ -14,6 +14,14 @@ public class PatientTelephone {
     private Integer id;
     private String telNumber;
 
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
+
     @ManyToOne
     @JoinColumn
     @JsonIgnore
