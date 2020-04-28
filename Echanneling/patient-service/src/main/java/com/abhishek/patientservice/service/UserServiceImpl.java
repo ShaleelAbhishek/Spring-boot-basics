@@ -65,8 +65,8 @@ public class UserServiceImpl implements UserDetailsService {
 
             customerOwner.setJoinedDate(LocalDate.now());
             customerOwner.setActivity(true);
-            customerOwner.setDlt(true);
-            customerOwner.setRole("Admin");
+            customerOwner.setDlt(false);
+            customerOwner.setRole("User");
             customerOwner.setPassword(bcryptEncoder.encode(customerOwner.getPassword()));
             return customerOwnerRepository.save(customerOwner);
         } else {

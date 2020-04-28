@@ -34,4 +34,10 @@ public class PatientTelephone {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+
 }
